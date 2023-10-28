@@ -33,6 +33,9 @@ class ProveedorController extends AbstractController
     {
 
         $proveedor = new Proveedor();
+        $proveedor->setEstaActivo(true);
+        $proveedor->setFechaInsercion(new \DateTime());
+        $proveedor->setFechaUltimaModificacion(new \DateTime());
         $form = $this->createForm(ProveedorType::class, $proveedor);
         $form->handleRequest($request);
 
