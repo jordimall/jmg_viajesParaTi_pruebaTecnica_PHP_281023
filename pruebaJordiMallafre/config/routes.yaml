@@ -9,3 +9,7 @@ app_proveedor_new:
 app_proveedor_edit:
   path: /proveedor/{id}/editar
   controller: App\Controller\ProveedorController::edit
+
+app_proveedor_delete:
+  path: /proveedor/{id}/eliminar
+  controller: App\Controller\ProveedorController::delete
