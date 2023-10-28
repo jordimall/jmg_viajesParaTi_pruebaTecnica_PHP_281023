@@ -33,6 +33,7 @@
                 <td>{{ proveedor.fechaInsercion ? proveedor.fechaInsercion|date('d-m-Y') : '' }}</td>
                 <td>{{ proveedor.fechaUltimaModificacion ? proveedor.fechaUltimaModificacion|date('d-m-Y') : '' }}</td>
                 <td>
+                    {{ include('proveedor/_delete_form.html.twig') }}
                     <a href="{{ path('app_proveedor_edit', {'id': proveedor.id}) }}">editar</a>
                 </td>
             </tr>

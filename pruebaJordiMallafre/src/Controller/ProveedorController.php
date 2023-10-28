@@ -72,6 +72,23 @@ class ProveedorController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    public function delete(Request $request,  $id, ProveedorRepository $proveedorRepository): Response
+    {
+
+        $proveedor = $proveedorRepository->find($id);
+    
+        if (!$proveedor) {
+            throw $this->createNotFoundException('Proveedor no encontrado');
+        }
+
+        if ($this->isCsrfTokenValid('delete'.$proveedor->getId(), $request->request->get('_token'))) {
+            $proveedorRepository->remove($proveedor);
+        }
+
+        return $this->redirectToRoute('app_proveedor_index', [], Response::HTTP_SEE_OTHER);
+        
+    }
     
 
 }
