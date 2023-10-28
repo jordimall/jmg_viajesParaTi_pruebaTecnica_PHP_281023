@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proveedor index{% endblock %}
+
+{% block body %}
+    <h1>Proveedor index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Telefono de contacto</th>
+                <th>Correo electronico</th>
+                <th>Tipo</th>
+                <th>Estado</th>
+                <th>Fecha de inserción</th>
+                <th>Fecha de la ultima modificación</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proveedor in pagination %}
+            <tr>
+                <td>{{ proveedor.id }}</td>
+                <td>{{ proveedor.nombre }}</td>
+                <td>{{ proveedor.telefonoContacto }}</td>
+                <td>{{ proveedor.correoElectronico }}</td>
+                <td>{{ proveedor.tipoProveedor }}</td>
+                <td>{{ proveedor.estaActivo ? 'Activo' : 'Inactivo' }}</td>
+                <td>{{ proveedor.fechaInsercion ? proveedor.fechaInsercion|date('d-m-Y') : '' }}</td>
+                <td>{{ proveedor.fechaUltimaModificacion ? proveedor.fechaUltimaModificacion|date('d-m-Y') : '' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No hay ningun registro</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+{% endblock %}
