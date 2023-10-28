@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProveedorRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProveedorRepository::class)
@@ -19,31 +20,43 @@ class Proveedor
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="El nombre es obligatorio")
+     * @Assert\Type("string")
      */
     private $nombre;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="El correo electrónico es obligatorio")
+     * @Assert\Email(message = "El correo electrónico '{{ value }}' no es válido.")
      */
     private $correoElectronico;
 
     /**
      * @ORM\Column(type="string", length=9)
+     * @Assert\NotBlank(message="El número de contacto es obligatorio")
+     * @Assert\Type("string")
      */
     private $telefonoContacto;
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank(message="El tipo de proveedor es obligatorio")
+     * @Assert\Type("string")
      */
     private $tipoProveedor;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\NotBlank(message="El esta activo es obligatorio")
+     * @Assert\Type("boolean")
      */
     private $estaActivo;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="la fecha de inserción es obligatoria")
+     * @Assert\Type("date")
      */
     private $fechaInsercion;
 

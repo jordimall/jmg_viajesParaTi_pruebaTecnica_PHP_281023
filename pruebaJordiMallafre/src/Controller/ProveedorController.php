@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Proveedor;
+use App\Form\ProveedorType;
 use App\Repository\ProveedorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +26,27 @@ class ProveedorController extends AbstractController
     
         return $this->render('proveedor/index.html.twig', [
             'pagination' => $pagination,
+        ]);
+    }
+
+    public function new(Request $request, ProveedorRepository $proveedorRepository): Response
+    {
+
+        $proveedor = new Proveedor();
+        $proveedor->setEstaActivo(true);
+        $proveedor->setFechaInsercion(new \DateTime());
+        $proveedor->setFechaUltimaModificacion(new \DateTime());
+        $form = $this->createForm(ProveedorType::class, $proveedor);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $proveedorRepository->add($proveedor);
+            return $this->redirectToRoute('app_proveedor_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('proveedor/new.html.twig', [
+            'proveedor' => $proveedor,
+            'form' => $form->createView(),
         ]);
     }
 }

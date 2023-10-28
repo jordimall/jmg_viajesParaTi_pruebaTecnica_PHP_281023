@@ -1,3 +1,8 @@
-index:
+app_proveedor_index:
   path: /
   controller: App\Controller\ProveedorController::index
+
+app_proveedor_new:
+  path: /proveedor/nuevo
+  controller: App\Controller\ProveedorController::new
+
