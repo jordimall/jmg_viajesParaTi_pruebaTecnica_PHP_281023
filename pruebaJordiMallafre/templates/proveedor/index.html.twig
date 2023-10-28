@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Proveedor index{% endblock %}
+{% block title %}Listado de Proveedores{% endblock %}
 
 {% block body %}
-    <h1>Proveedor index</h1>
+    <h1>Listado de Proveedores</h1>
+
+    <a href="{{ path('app_proveedor_new') }}">Create new</a>
 
     <table class="table">
         <thead>

@@ -1,0 +1,4 @@
+{{ form_start(form) }} {# Inicia el formulario #}
+    {{ form_widget(form) }} {# Renderiza los campos del formulario #}
+    <button class="btn">{{ button_label|default('Guardar') }}</button> {# Crea un botón con una etiqueta, usando 'Guardar' como valor predeterminado para la etiqueta #}
+{{ form_end(form) }} {# Finaliza el formulario #}
