@@ -41,7 +41,7 @@ class ProveedorType extends AbstractType
         ;
 
         if (isset($options['editar_registro']) && $options['editar_registro'] === true) {
-            $builder->add('activo');
+            $builder->add('estaActivo');
         }
     }
 

@@ -6,6 +6,3 @@ app_proveedor_new:
   path: /proveedor/nuevo
   controller: App\Controller\ProveedorController::new
 
-app_proveedor_edit:
-  path: /proveedor/{id}/editar
-  controller: App\Controller\ProveedorController::edit

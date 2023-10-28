@@ -55,8 +55,6 @@ class Proveedor
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank(message="la fecha de inserción es obligatoria")
-     * @Assert\Type("date")
      */
     private $fechaInsercion;
 

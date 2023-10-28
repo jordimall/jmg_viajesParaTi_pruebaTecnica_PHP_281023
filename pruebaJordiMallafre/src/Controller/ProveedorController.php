@@ -49,4 +49,29 @@ class ProveedorController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    public function edit(Request $request, $id, ProveedorRepository $proveedorRepository): Response
+    {
+        $proveedor = $proveedorRepository->find($id);
+    
+        if (!$proveedor) {
+            throw $this->createNotFoundException('Proveedor no encontrado');
+        }
+    
+        $form = $this->createForm(ProveedorType::class, $proveedor, ['editar_registro' => true]);
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $proveedor->setFechaUltimaModificacion(new \DateTime());
+            $proveedorRepository->add($proveedor);
+            return $this->redirectToRoute('app_proveedor_index', [], Response::HTTP_SEE_OTHER);
+        }
+    
+        return $this->render('proveedor/edit.html.twig', [
+            'proveedor' => $proveedor,
+            'form' => $form->createView(),
+        ]);
+    }
+    
+
 }
