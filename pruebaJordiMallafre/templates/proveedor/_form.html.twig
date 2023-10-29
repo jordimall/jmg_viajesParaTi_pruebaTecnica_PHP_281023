@@ -1,0 +1,25 @@
+{{ form_start(form, {'attr': {'class': 'form-bootstrap-class'}}) }}
+    <div class="mb-3">
+        {{ form_row(form.nombre, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.correoElectronico, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.telefonoContacto, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.tipoProveedor, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    {% if form.estaActivo is defined %}
+
+        <div class="mb-3">
+            {{ form_row(form.estaActivo, {'attr': {'class': 'form-control form-check-input'}}) }}
+        </div>
+
+    {% endif %}
+
+    <button type="submit" class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
+    
+{{ form_end(form) }}

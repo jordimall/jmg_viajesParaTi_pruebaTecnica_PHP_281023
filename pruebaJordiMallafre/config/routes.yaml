@@ -1,3 +1,15 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+app_proveedor_index:
+  path: /
+  controller: App\Controller\ProveedorController::index
+
+app_proveedor_new:
+  path: /proveedor/nuevo
+  controller: App\Controller\ProveedorController::new
+
+app_proveedor_edit:
+  path: /proveedor/{id}/editar
+  controller: App\Controller\ProveedorController::edit
+
+app_proveedor_delete:
+  path: /proveedor/{id}/eliminar
+  controller: App\Controller\ProveedorController::delete
