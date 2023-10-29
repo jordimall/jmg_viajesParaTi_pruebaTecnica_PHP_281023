@@ -23,10 +23,10 @@ class ProveedorController extends AbstractController
             $request->query->getInt('page', 1), // Página solicitada, por defecto página 1
             10 // Número de elementos por página
         );
+
+        $this->get('twig')->addGlobal('pagination', $pagination);
     
-        return $this->render('proveedor/index.html.twig', [
-            'pagination' => $pagination,
-        ]);
+        return $this->render('proveedor/index.html.twig');
     }
 
     public function new(Request $request, ProveedorRepository $proveedorRepository): Response
