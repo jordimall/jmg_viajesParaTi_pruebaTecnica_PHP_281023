@@ -3,50 +3,55 @@
 {% block title %}Listado de Proveedores{% endblock %}
 
 {% block body %}
-    <h1>Listado de Proveedores</h1>
+    <h1 class="text-center">Listado de Proveedores</h1>
 
-    <a href="{{ path('app_proveedor_new') }}">Registrar un proveedor</a>
+    <a href="{{ path('app_proveedor_new') }}" class="btn btn-primary">Registrar un proveedor</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Telefono de contacto</th>
-                <th>Correo electronico</th>
-                <th>Tipo</th>
-                <th>Estado</th>
-                <th>Fecha de inserción</th>
-                <th>Fecha de la ultima modificación</th>
-                <th>Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for proveedor in pagination %}
-            <tr>
-                <td>{{ proveedor.id }}</td>
-                <td>{{ proveedor.nombre }}</td>
-                <td>{{ proveedor.telefonoContacto }}</td>
-                <td>{{ proveedor.correoElectronico }}</td>
-                <td>{{ proveedor.tipoProveedor }}</td>
-                <td>{{ proveedor.estaActivo ? 'Activo' : 'Inactivo' }}</td>
-                <td>{{ proveedor.fechaInsercion ? proveedor.fechaInsercion|date('d-m-Y') : '' }}</td>
-                <td>{{ proveedor.fechaUltimaModificacion ? proveedor.fechaUltimaModificacion|date('d-m-Y') : '' }}</td>
-                <td>
-                    {{ include('proveedor/_delete_form.html.twig') }}
-                    <a href="{{ path('app_proveedor_edit', {'id': proveedor.id}) }}">editar</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">No hay ningun registro</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-responsive">
 
-    <div class="pagination">
-        {{ knp_pagination_render(pagination) }}
+        <table class="table table-striped table-hover align-middle">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Telefono de contacto</th>
+                    <th scope="col">Correo electronico</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Fecha de inserción</th>
+                    <th scope="col">Fecha de la ultima modificación</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            {% for proveedor in pagination %}
+                <tr>
+                    <td>{{ proveedor.id }}</td>
+                    <td>{{ proveedor.nombre }}</td>
+                    <td>{{ proveedor.telefonoContacto }}</td>
+                    <td>{{ proveedor.correoElectronico }}</td>
+                    <td>{{ proveedor.tipoProveedor }}</td>
+                    <td>{{ proveedor.estaActivo ? 'Activo' : 'Inactivo' }}</td>
+                    <td>{{ proveedor.fechaInsercion ? proveedor.fechaInsercion|date('d-m-Y') : '' }}</td>
+                    <td>{{ proveedor.fechaUltimaModificacion ? proveedor.fechaUltimaModificacion|date('d-m-Y') : '' }}</td>
+                    <td class="d-grid gap-2">
+                        {{ include('proveedor/_delete_form.html.twig') }}
+                        <a href="{{ path('app_proveedor_edit', {'id': proveedor.id}) }}" class="btn btn-primary">editar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">No hay ningun registro</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
     </div>
+
+    {# {{ dump(pagination) }} #}
+<div class="navigation">
+    {{ knp_pagination_render(pagination, '@KnpPaginator/Pagination/bootstrap_v5_pagination.html.twig') }}
+</div>
 
 {% endblock %}
